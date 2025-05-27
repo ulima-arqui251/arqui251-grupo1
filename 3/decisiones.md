@@ -1,141 +1,132 @@
-## Decisión 1 (Elección de Tecnología)
+# Decisión 1 (Elección de Tecnología)
 
-### Título:
+## Título:
 Elección entre Lenguaje de Tipado Estático vs Tipado Dinámico para todo el proyecto
 
+## Contexto:
+El grupo de desarrollo es mediano y tiene experiencia con Java y JavaScript. La velocidad de desarrollo es vital dado que la empresa está constantemente agregando nuevas actualizaciones al software de facturación. Además, la aplicación necesita un nivel adecuado de seguridad para proteger los datos financieros de los clientes de la empresa.
 
-### Contexto:
+## Alternativas:
 
-El grupó de desarrollo es mediano los cuales tienen experiencia con Java, Javascript y Python. La velocidad de desarrollo es vital dado que la empresa está constantemente agregando nuevas actualizaciones al software de facturación. Dicho esto, la aplicación necesita un nivel adecuado de seguridad para proteger los datos financieros de los clientes de la empresa.
+### Lenguaje de Tipado Estático (Java)
+- El código es más fácil de refactorizar y mantener gracias al tipado fuerte.
+- El compilador de Java es más eficiente.
+- Proporciona mayor seguridad y detección temprana de errores en tiempo de compilación.
+- Facilita la creación de sistemas robustos y menos propensos a fallos en producción.
+- Funciona mejor para entornos físicos
 
+### Lenguaje de Tipado Dinámico (JavaScript)
+- En el caso de JavaScript, el uso de un único lenguaje para frontend y backend simplifica el stack tecnológico.
+- Con Node.js, ofrece capacidades de concurrencia eficientes para manejar solicitudes múltiples.
+- Permite mayor flexibilidad para cambios rápidos y prototipado.
 
-### Alternativas:
+## Criterios de Elección:
+- Seguridad y robustez en los módulos financieros.
+- Minimizar la cantidad de lenguajes diferentes que utilizará el equipo de desarrollo.
+- Flexibilidad para cambios rápidos en los módulos de la plataforma.
 
-1.	Lenguaje de Tipado Estático (Java, Kotlin)
-   
-•	El código es más fácil de refactorizar y mantener gracias al tipado fuerte
+## Decisión:
+Se elige el uso de lenguajes de tipado estático, específicamente **Java**.
 
-•	Los compiladores pueden optimizar el código de manera más eficiente.
+## Sustento:
+Dado el enfoque en la seguridad, robustez y almacenamiento local de los datos financieros, Java representa la mejor opción para asegurar la calidad y mantenibilidad del software. El tipado estático permite detectar errores en tiempo de compilación, reduciendo fallos en producción y facilitando la refactorización conforme el sistema crece.
 
-2.	Lenguaje de Tipado Dinámico (JavaScript, Python)
+Aunque la velocidad de desarrollo y la simplicidad del stack son importantes, la prioridad en este proyecto es la integridad y estabilidad del sistema, lo que hace que Java sea la elección adecuada.
+Esta decisión permitirá al equipo:
+- Mantener un código más estructurado y seguro.
+- Detectar errores tempranamente, minimizando riesgos.
+- Facilitar la evolución y mantenimiento a largo plazo del sistema.
+- Aprovechar la experiencia existente en el equipo para una adopción más rápida.
 
-•	En el caso de JavaScript, el uso de un único lenguaje para frontend y backend simplifica el stack tecnológico.
 
-•	Con Node.js, ofrece capacidades de concurrencia eficientes para manejar solicitudes múltiples.
+# Decisión 2 (Elección de arquitectura)
 
+## Título:  
+Elección entre Arquitectura Monolítica vs Arquitectura Cliente-Servidor para una aplicación Java con base de datos.
 
-### Criterios de Elección:
+## Contexto:  
+El proyecto necesita de una base de datos para almacenar toda la información de la empresa. Se tiene una mayor experiencia con Java. Finalmente, el negocio tiene planes de expansión.
 
-•	Velocidad de desarrollo.
+## Alternativas:
 
-•	Minimizar la cantidad de lenguajes diferentes que utilizará el equipo de desarrollo
+### Arquitectura Monolítica  
+- Todo el negocio está integrado en una sola aplicación.  
+- Menor complejidad en la comunicación interna, sin latencias de red.  
+- Difícil de escalar y mantener cuando el sistema crece o se vuelve complejo.  
+- Cambios en una parte pueden impactar todo el sistema.  
 
-•	Flexibilidad para cambios rápidos en los módulos de la plataforma.
+### Arquitectura Cliente-Servidor  
+- Separación clara entre cliente (interfaz) y servidor (lógica + base de datos) ubicados en la misma red local.  
+- Permite distribuir la carga entre cliente y servidor para mejor rendimiento y mantenimiento.  
+- Facilidad para actualizaciones independientes de cliente y servidor.  
+- Posibilidad para comunicación a través de red local.
+- Mejor preparación para crecimiento en usuarios y funcionalidad.  
+- Permite futuros accesos remotos o integración con otros sistemas si fuera necesario..
 
-•	Necesidades de seguridad y robustez en los módulos financieros.
+## Criterios de Elección:  
+- Escalabilidad y crecimiento futuro.  
+- Complejidad y tiempo de desarrollo inicial.  
+- Experiencia del equipo con tecnologías distribuidas.  
 
+## Decisión:  
+Se opta por la **Arquitectura Cliente-Servidor** para el proyecto Java con base de datos.
 
-### Decisión:
+## Sustento:  
+La arquitectura cliente-servidor permite una mejor escalabilidad y mantenimiento para el sistema. La separación de responsabilidades entre cliente y servidor facilita actualizaciones independientes, mejora la seguridad y evita conflictos.
 
-Se elige el uso de lenguajes de tipado dinámico.
+Aunque el desarrollo inicial es más complejo que en un monolito, la experiencia del equipo en Java y la necesidad de una base robusta y escalable justifican esta elección. Además, el modelo ya tienen pruebas previas de exito para entornos pequeños en escala.
 
+Esta decisión permitirá al equipo:  
+- Escalar el servidor y el cliente según demanda.  
+- Mantener y actualizar módulos sin afectar todo el sistema.  
+- Gestionar mejor la seguridad y control de accesos.  
+- Facilitar la integración futura con otros sistemas o servicios.
 
-### Sustento:
 
-Debido al rápido crecimiento de la empresa y la necesidad de iterar con agilidad, un lenguaje de tipado dinámico como JavaScript ofrece la flexibilidad ideal para adaptarse a cambios constantes. Además, unificar el lenguaje en frontend y backend simplifica el stack tecnológico y facilita la adopción de nuevos desarrollos por parte del equipo actual. Aunque los lenguajes tipados estáticamente puedan reducir ciertos errores, en este contexto, la capacidad de adaptación y la simplicidad del ecosistema resultan prioridades más relevantes.
+# Decisión 3 (Elección de Motor de Base de Datos)
 
+## Título:  
+Elección entre Oracle vs PostgreSQL para la base de datos del proyecto Java
 
-### Decisión 2 (Modelo de Datos)
+## Contexto:  
+El proyecto requiere una base de datos robusta, segura y con alta disponibilidad para soportar una aplicación Java empresarial. El sistema deberá manejar datos críticos, transacciones complejas y ofrecer soporte a un volumen medio-alto de usuarios concurrentes.
 
+## Alternativas:
 
-### Título:
+### Oracle  
+- Motor de base de datos comercial con alta documentación
+- Excelente soporte para transacciones complejas, alta concurrencia y rendimiento.  
+- Amplias funcionalidades avanzadas como particionamiento, replicación, y seguridad.  
+- Costos asociados de licenciamiento y mantenimiento.  
+- Integración robusta con herramientas y frameworks Java empresariales.
+- Experiencia previa.
 
-Elección entre un modelo de datos relacional vs documental para el manejo de los datos del módulo de CRM
+### PostgreSQL  
+- Motor de base de datos open source, altamente confiable y con gran comunidad.  
+- Buen soporte para transacciones y concurrencia, con mejoras constantes.  
+- Costos bajos o nulos en licenciamiento.  
+- Menor soporte comercial formal, aunque existen opciones de soporte pago.  
+- Puede requerir mayor configuración y tuning para cargas muy altas o funcionalidades avanzadas específicas.
 
+## Criterios de Elección:  
+- Robustez y fiabilidad en manejo de datos críticos.  
+- Necesidades funcionales avanzadas (replicación, particionamiento, seguridad).  
+- Escalabilidad y rendimiento bajo cargas esperadas.
 
-### Contexto:
+## Decisión:  
+Se elige **Oracle** como motor de base de datos para el proyecto.
 
-La información de los clientes, almacenada por el módulo de CRM, es menos estructurada que la del resto de la plataforma. Suelen almacenarse también interacciones con el soporte y comunicaciones por diversos canales. Se está revisando si se utilizará el modelo relacional o se opta por un esquema documental.
+## Sustento:  
+Oracle ofrece un conjunto completo de funcionalidades avanzadas que garantizan la robustez, seguridad y escalabilidad necesarias para el proyecto empresarial. La experiencia previa del equipo con Oracle facilita el desarrollo y mantenimiento, reduciendo riesgos y tiempos de implementación.
 
+Aunque PostgreSQL representa una alternativa económicamente atractiva y confiable, en este proyecto se debe asegurar la estabilidad que Oracle proporciona, especialmente con el lenguaje Java.
 
-### Alternativas:
+Con esta decisión, el equipo podrá:  
+- Gestionar grandes volúmenes de datos con alta concurrencia y seguridad.  
+- Aprovechar las capacidades avanzadas nativas de Oracle para optimizar rendimiento y disponibilidad.  
+- Minimizar riesgos relacionados a la escalabilidad.
 
-1.	Modelo Relacional (Oracle)
 
-•	Garantiza consistencia entre los datos.
 
-•	Cuenta con herramientas empresariales maduras para seguridad, respaldo y monitoreo
 
-•	Permite almacenar documentos en formato JSON
-
-2.	Modelo Documental (Couchbase)
-
-•	Permite la sincronización entre dispositivos y el almacenamiento distribuido eficiente
-
-•	Ideal para aplicaciones en tiempo real que requieren baja latencia y alta disponibilidad
-
-
-### Criterios de Elección:
-
-•	Integridad de datos y soporte para consultas estructuradas
-
-•	Flexibilidad en la definición del esquema de los datos de clientes.
-
-•	Requisitos de escalabilidad para el CRM.
-
-
-### Decisión:
-
-Se elige un modelo relacional (como Oracle Database)
-
-
-### Sustento:
-
-Aunque el módulo de CRM maneja datos parcialmente no estructurados, se considera fundamental mantener una visión integrada del sistema, incluyendo la posibilidad de cruzar información con otros módulos (como ventas, soporte o facturación). Oracle permite lograr esto sin comprometer la integridad de los datos, ofreciendo además soporte para documentos JSON cuando se requiere flexibilidad. Esta capacidad híbrida permite conservar la estructura del modelo relacional y al mismo tiempo adaptarse a casos puntuales de datos más dinámicos. Adicionalmente, su madurez, rendimiento y herramientas de gestión lo hacen una opción más alineada con los estándares de calidad y confiabilidad requeridos para una solución empresarial integrada.
-
-
-### Decisión 3 (Coordinación)
-
-
-### Título:
-
-Un script de JavaScript se encarga de ejecutar consultas SQL
-
-
-### Contexto:
-
-Se necesita una base de datos robusta y escalable que permita ejecutar consultas desde un script en JavaScript, optimizando el rendimiento y garantizando integridad en los datos. 
-
-
-### Alternativas:
-
-1.	Oracle Database
-
-•	Alta integridad referencial y consistencia de datos.
-
-•	Herramientas robustas para seguridad, replicación y respaldo.
-
-2.	MongoDB
-
-•	Alta escalabilidad horizontal.
-
-•	Flexible para cambios en la estructura de datos.
-
-
-### Criterios de Elección:
-
-•	Integridad de datos.
-
-•	Escalabilidad
-
-•	Facilidad de integración con JavaScript
-
-
-### Decisión:
-
-Se elige Oracle como el modelo de base de datos para la aplicación
-
-
-### Sustento:
-Oracle ofrece una infraestructura sólida para mantener la integridad y consistencia de los datos, aspectos fundamentales en sistemas de facturación. Su fiabilidad comprobada en entornos empresariales complejos lo posiciona como una solución robusta para aplicaciones que requieren precisión y control.
 
