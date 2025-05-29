@@ -1,0 +1,59 @@
+Desarrollo Conceptual – Bases de Datos No Relacionales (NoSQL)
+En la actualidad nos encontramos en una era digital, por la cual la gestión de la información digital ha tomado un rol protagónico ante la necesidad de almacenar, recuperar y analizar grandes volúmenes de datos generados por las personas como parte de actividades diarias que puedan tener como almacenar un trabajo de investigación. Esta situación ha generado una reflexión profunda sobre los métodos empleados para estructurar y acceder a dicha información especialmente cuando los modelos tradicionales comienzan a mostrar limitaciones frente al crecimiento acelerado de los datos.
+Uno de los principales obstáculos que presentan estos modelos tradicionales es su rigidez estructural. La necesidad de definir previamente esquemas fijos dificulta la adaptación a situaciones donde la información varía en forma o contenido. A esto se suman los problemas de rendimiento al manejar grandes cantidades de datos, especialmente cuando se requiere realizar operaciones complejas o múltiples accesos simultáneos. Asimismo, mantener la coherencia y el control en ambientes distribuidos puede volverse costoso y problemático, generando bloqueos, lentitud en las respuestas y dificultades para escalar horizontalmente sin comprometer la estabilidad del sistema. Estas limitaciones han puesto en evidencia la necesidad de replantear los enfoques de almacenamiento y gestión en función de los nuevos retos informativos.
+Las bases de datos no relacionales también conocidas como NoSQL, surgen como una respuesta a estas nuevas exigencias. Se trata de modelos de almacenamiento que no requieren una estructura rígida para organizar la información, lo cual permite mayor libertad a la hora de modelar realidades cambiantes, complejas o poco definidas. Esto resulta clave en un contexto donde la variedad de datos y su generación constante demandan una mayor capacidad de adaptación.
+A diferencia de los enfoques anteriores, este tipo de almacenamiento prioriza ante todo la eficiencia en el manejo de grandes cantidades de información distribuida, así como la capacidad de operar de forma fluida en entornos dinámicos. Uno de los cambios más relevantes que introducen es su orientación a modelos flexibles en donde la estructura no se impone desde el inicio, sino que puede adaptarse en función de las necesidades reales del flujo informativo.
+La necesidad de acceder a la información en tiempo real, responder a picos de demanda o mantener la disponibilidad ante fallos, ha desplazado el interés hacia sistemas que no necesariamente garantizan una coherencia estricta, pero si permiten mantener la continuidad y agilidad en los procesos. La gestión de datos deja de estar centrada únicamente en mantener un orden estricto para dar paso a una visión donde lo primordial es mantener el ritmo de crecimiento, acceso y uso de la información.
+Este tipo de enfoque refleja un cambio profundo en la forma en que se concibe la relación entre los sistemas y los datos. Ya no se trata únicamente de guardar información, sino de hacerlo en función del contexto, del volumen y de la naturaleza cambiante de aquello que se registra. La utilidad de este modelo radica en su capacidad para responder de forma eficaz a entornos de alta exigencia informativa, donde la rapidez, la variedad y la descentralización se convierten en factores clave.
+
+
+
+
+
+
+
+Consideraciones Técnicas:
+Para adentrarnos al mundo del NoSQL vamos a modelar una base de datos no relación en MongoDB que trata de crear un carrito de compras para la creación de una página web de videojuegos. Se implementará una base de datos que contendrá dos subcolecciones que serán los productos de la tienda y los productos que entren al carrito de compras. Los valores importantes a consideran serán el precio del producto, el nombre del producto y el link de la imagen que tendrá el producto. El carrito contara con un GET, POST, DELETE y PUT en el Backend y en el Fronted estará el diseño de la pagina web. Además se hará uso de la herramienta Postman para verificar los GET, POST, DELETE y PUT del carrito de compras.
+1.- Instalación de MongoDB
+Primero tendremos que buscar la página oficial de MongoDB, al estar en la página descargamos “MongoDB Community Server Download”, “MongoDB Shell Download” y “MongoDB Command Line Database Tools Download”. En mi caso descargue los tres archivos con su ultima versión para el sistema operativo de Windows y en El Package “msi”. Ejecutamos primero el instalador de MongoDB y nos sale el asistente de instalación. Lo importante a resaltar en esa instalación es que aceptar los términos y condiciones, dar a la opción de instalación completa, definir el directorio de MongoDB donde se guardara la data, definir el nombre del servicio, dar check en la opción de instalar MongoDB Compass
+Imagen 1: Instalacion de Directorio y Nombre
+https://ibb.co/mVB10W4H
+Imagen 2: Instalar MongoDB Compass
+https://ibb.co/Z62C1pyp
+Podemos comprobar su funcionamiento abriendo servicios de Windows
+Imagen 3: Comprobar funcionamiento MongoDB
+https://ibb.co/BHGtLzyY
+Ahora lo siguiente es instalar la Shell (interfaz de línea de comandos) y el MongoDB Tools (herramientas de línea de comandos), la instalación es más fácil en estas dos solo es dar a siguiente y instalarlo. Para finalizar hay que ir a “Configuración avanzada de sistema” en Windows para ingresar la ruta del MongoDB y los Tools en las “Variables de entorno”. La variable donde ingresaremos las rutas será “Path”.
+Imagen 4: Ingresar las variables de entorno
+https://ibb.co/KxXYVq0y
+Para confirmar la configuración ponemos el comando “mongod” en el cmd
+Imagen 5: Prueba de MongoDB
+https://ibb.co/21sDXZsM
+2.- Instalación de Postman
+La instalación de Postman es mucho mas sencilla solo iremos a su pagina oficial y descargaremos el setup de Postman para el sistema operativo Windows. 
+Imagen 6: Interfaz de Postman
+https://ibb.co/bgdjR0bz
+3.- Creación de la base de datos
+Para crear la base de datos primero la encendemos con el comando “mongod” después ingresamos a MongoDB Compass y nos conectamos con nuestro localhost.
+Imagen 7: Conectar con localhost
+https://ibb.co/tMhCQvDx
+Después de conectarnos nos aparecerán tres database por defecto admin, config y local. Presionamos en el “+” que esta junto al icono de la laptop. Nos pedirá elegir un nombre para el database y nombre de colección y listo ya estará creado el database. El siguiente paso es crear dos subcolecciones para el carrito y los productos. Para crear una nueva colección vamos al “+” que esta al lado del icono del database que creamos. 
+Imagen 8: Creación del Database en MongoDB Compass
+https://ibb.co/RGr3w2Gs
+4.- Crear la data de la página web NoSQL
+Diseñaremos una data de videojuegos para la página web. La data será ingresada de manera manual a la colección de Productos con la siguiente estructura JSON :
+nombre: { type: String, required: true, unique: true },
+img: { type: String, required: true },
+  enCarrito: { type: Boolean, default: false },
+  precio: { type: Number, required: true }
+por parte de enCarrito no es necesario ingresarlo ya que por defecto siempre va a ser false. La estructura quedaría de la siguiente manera:
+{
+	“Nombre”:”The lasto of us”,
+	“img”:”LINK”,
+	Precio: 3450
+}
+Imagen 9: Ingresar data
+https://ibb.co/nNSCcXS4
+Finalmente toda esta Data se conecta con el Backend que contiene el POST, DELETE, PUT y GET que darán las funcionalidades a la pagina web. Podemos probar la conexión de la base de datos y el Backend haciendo un GET en POSTMAN.
+Imagen 10: Probar conexión
+https://ibb.co/CsPLRqjW
